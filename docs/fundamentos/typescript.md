@@ -1,107 +1,32 @@
-# 🟢 TypeScript esencial para React + TypeScript
+# 🟢 TypeScript esencial para React
 
-> Aquí aprenderás solo lo necesario de TypeScript para trabajar con React correctamente.
+> Aquí aprenderás el TypeScript mínimo necesario para entender React sin fricción.
 
 ## 🎯 Objetivo de esta sección
 
 Al terminar podrás:
 
-- Entender funciones modernas
-- Usar destructuring
-- Trabajar con arrays (map)
-- Usar import/export
-- Leer código React sin perderte
+- Entender tipos básicos
+- Tipar funciones
+- Tipar objetos
+- Leer código React con TypeScript
+- Evitar errores comunes desde el inicio
+
+---
 
 ## 🚫 Importante
 
 No vamos a ver:
 
-- Clases
-- Prototypes
-- Temas avanzados de JS
+- Tipos avanzados
+- Generics complejos
+- Utility types
 
-> Solo lo que React realmente usa
+> Solo lo necesario para empezar con React
 
-## 🧠 Funciones modernas
+---
 
-En React usamos funciones constantemente.
-
-Ejemplo:
-
-```ts
-function saludar(nombre: string) {
-    return `Hola ${nombre}`;
-}
-```
-
-También usamos funciones flecha:
-
-```ts
-const saludar = (nombre: string) => {
-    return `Hola ${nombre}`;
-};
-```
-
-Forma simplificada:
-
-```ts
-const saludar = (nombre: string) => `Hola ${nombre}`;
-```
-
-## 🧱 Destructuring
-
-Permite extraer valores de objetos fácilmente.
-
-```ts
-const usuario = {
-    id: 1,
-    nombre: "Jonathan",
-};
-
-const { nombre } = usuario;
-```
-
-👉 Esto se usa TODO el tiempo en React (props)
-
-## 🔁 Arrays y map()
-
-React usa listas para renderizar UI.
-
-```ts
-const numeros = [1, 2, 3];
-
-const resultado = numeros.map((n) => n * 2);
-```
-
-Resultado:
-
-```ts
-[2, 4, 6];
-```
-
-👉 Luego esto se convierte en componentes
-
-## 📦 Import / Export
-
-Los proyectos React están separados en archivos.
-
-Exportar:
-
-```ts
-export const Saludo = () => {
-  return <h1>Hola</h1>
-}
-```
-
-Importar:
-
-```ts
-import { Saludo } from "./Saludo";
-```
-
-## 🧩 Tipos básicos en TypeScript
-
-Tipos más comunes:
+## 🧠 Tipos básicos
 
 ```ts
 let nombre: string = "Jonathan";
@@ -109,7 +34,11 @@ let edad: number = 30;
 let activo: boolean = true;
 ```
 
-Objetos:
+👉 TypeScript valida esto antes de ejecutar
+
+---
+
+## 🧱 Tipos en objetos
 
 ```ts
 type Usuario = {
@@ -118,59 +47,152 @@ type Usuario = {
 };
 ```
 
-## 🔄 Funciones con tipos
+Uso:
 
 ```ts
-const sumar = (a: number, b: number): number => {
-    return a + b;
+const usuario: Usuario = {
+    id: 1,
+    nombre: "Jonathan",
 };
 ```
 
+---
+
+## 🔄 Funciones tipadas
+
+```ts
+const saludar = (nombre: string): string => {
+    return `Hola ${nombre}`;
+};
+```
+
+👉 Entrada tipada + salida tipada
+
+---
+
+## 🧩 Destructuring tipado
+
+```ts
+type Usuario = {
+    nombre: string;
+};
+
+const usuario: Usuario = {
+    nombre: "Jonathan",
+};
+
+const { nombre } = usuario;
+```
+
+👉 Esto lo usarás en props
+
+---
+
+## 🔁 Arrays tipados
+
+```ts
+const numeros: number[] = [1, 2, 3];
+
+const resultado = numeros.map((n) => n * 2);
+```
+
+👉 `map` es clave para React
+
+---
+
+## 📦 Import / Export
+
+```ts
+export const saludar = (nombre: string) => `Hola ${nombre}`;
+```
+
+```ts
+import { saludar } from "./saludar";
+```
+
+---
+
 ## 🧠 Conexión con React
 
-Todo esto se usa así:
+Esto será:
 
-- Funciones → Componentes
-- Destructuring → Props
-- map → Listas en UI
-- Types → Seguridad en componentes
+- Tipos → Props ✅
+- Funciones → Componentes ✅
+- Arrays → Render dinámico ✅
+
+---
 
 ## 🧪 Ejercicios
 
 ### Nivel 1
 
-1. Crea una función que reciba un nombre y retorne un saludo
-2. Crea un array de números y duplícalos con map
+Crear una función tipada que retorne un saludo.
+
+<details>
+<summary>✅ Ver solución</summary>
+
+```ts
+const saludar = (nombre: string): string => {
+    return `Hola ${nombre}`;
+};
+```
+
+</details>
+
+---
 
 ### Nivel 2
 
-1. Define un tipo `Producto` con:
-    - id
-    - nombre
-    - precio
+Definir un tipo `Producto`.
 
-2. Crea una función que reciba un producto y retorne su nombre
+<details>
+<summary>✅ Ver solución</summary>
+
+```ts
+type Producto = {
+    id: number;
+    nombre: string;
+    precio: number;
+};
+```
+
+</details>
+
+---
 
 ### Nivel 3 (integrado)
 
-Simula esto:
+Crear un array de productos y usar `map`.
+
+<details>
+<summary>✅ Ver solución</summary>
 
 ```ts
-productos = [ { id: 1, nombre: 'Mouse' } ]
+type Producto = {
+    id: number;
+    nombre: string;
+};
 
-→ transforma con map → retorna nombres
+const productos: Producto[] = [{ id: 1, nombre: "Mouse" }];
+
+const nombres = productos.map((p) => p.nombre);
 ```
+
+</details>
+
+---
 
 ## ✅ Resultado esperado
 
 Deberías poder:
 
-- Leer funciones modernas
-- Entender destructuring
-- Usar map sin problemas
-- Comprender imports/exports
-- Leer código React básico sin confusión
+- Leer tipos básicos
+- Entender funciones tipadas
+- Usar objetos con tipos
+- Comprender arrays tipados
+
+---
 
 ## 🔜 Siguiente paso
 
-👉 JSX — cómo React mezcla TypeScript y HTML
+👉 JSX — cómo TypeScript y React trabajan juntos

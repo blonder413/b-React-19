@@ -16,7 +16,7 @@ export default defineConfig({
                         text: "TypeScript esencial",
                         link: "/fundamentos/typescript",
                     },
-                    { text: "JSX", link: "/fundamentos/jsx" },
+                    { text: "TSX", link: "/fundamentos/tsx" },
                 ],
             },
             {
