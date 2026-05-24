@@ -13,8 +13,8 @@ export default defineConfig({
                 items: [
                     { text: "Introducción", link: "/fundamentos/introduccion" },
                     {
-                        text: "JavaScript esencial",
-                        link: "/fundamentos/javascript",
+                        text: "TypeScript esencial",
+                        link: "/fundamentos/typescript",
                     },
                     { text: "JSX", link: "/fundamentos/jsx" },
                 ],
